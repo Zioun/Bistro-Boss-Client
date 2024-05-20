@@ -1,10 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const links = <>
     <li><NavLink to={"/"}>Home</NavLink></li>
     <li><NavLink to={"/menu"}>Menu</NavLink></li>
+    <li><NavLink to={"/order"}>Order</NavLink></li>
   </>
   return (
     <div className="navbar bg-slate-800 text-white border fixed z-10 max-w-screen-xl bg-opacity-35">
@@ -41,7 +42,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <span className="btn btn-sm"><Link to={"/login"}>Login</Link></span>
       </div>
     </div>
   );

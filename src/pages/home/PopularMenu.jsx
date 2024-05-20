@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import MenuItem from '../../shared/MenuItem';
-import useMenu from './../../hooks/useMenu';
+import React from 'react';
 
-const PopularMenu = () => {
-    const [menu] = useMenu()
-    const popular = menu.filter(item => item.category == 'popular')
+const PopularMenu = ({item}) => {
+    const {name,recipe,image,price} = item;
     return (
-        <section>
-            <div className='grid grid-cols-2 gap-5 py-5'>
-                {
-                    popular.map(item => <MenuItem key={item._id} item={item} ></MenuItem>)
-                }
+        <div className='flex gap-2 items-center'>
+            <div><img src={image} alt="" /></div>
+            <div>
+                <h1>{name}</h1>
+                <p>{recipe}</p>
             </div>
-        </section>
+            <div>
+                <p>{price}</p>
+            </div>
+        </div>
     );
 };
 
