@@ -3,8 +3,10 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const SignUp = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
@@ -21,13 +23,22 @@ const SignUp = () => {
       console.log(loggedUser);
       updateUserProfile(data.name, data.photoURL)
       .then(()=>{
-        console.log('user profile info updated');
-        Swal.fire({
-          title: "Good job!",
-          text: "You clicked the button!",
-          icon: "success"
-        });
-        navigate("/")
+        const userInfo = {
+          name: data.name,
+          email: data.email
+        }
+        axiosPublic.post('/users', userInfo)
+        .then(res => {
+          if(res.data.insertedId){
+            Swal.fire({
+              title: "Good job!",
+              text: "You clicked the button!",
+              icon: "success"
+            });
+            navigate("/")
+          }
+        })
+        
       })
       .catch(error => console.log(error))
     });

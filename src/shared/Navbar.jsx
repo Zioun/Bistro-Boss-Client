@@ -16,6 +16,7 @@ const Navbar = () => {
     <li><NavLink to={"/"}>Home</NavLink></li>
     <li><NavLink to={"/menu"}>Menu</NavLink></li>
     <li><NavLink to={"/order"}>Order</NavLink></li>
+    <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
     <li><button className="btn btn-sm ml-5 mt-1 btn-warning">Cards:{cart.length}</button></li>
   </>
   return (

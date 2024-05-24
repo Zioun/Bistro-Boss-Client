@@ -8,11 +8,10 @@ import {
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
-
+import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
-  const {signIn} = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [disabled, setDisabled] = useState(true);
   const captchaRef = useRef(null);
 
@@ -24,34 +23,31 @@ const Login = () => {
     loadCaptchaEnginge(6);
   }, []);
 
-  
-
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    signIn(email, password)
-    .then(result => {
+    signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
       Swal.fire({
         title: "Good job!",
         text: "You clicked the button!",
-        icon: "success"
+        icon: "success",
       });
-      navigate(from,{replace:true});
-    })
+      navigate(from, { replace: true });
+    });
   };
 
   const handleCaptcha = () => {
     const captchaValue = captchaRef.current.value;
     console.log(captchaValue);
     if (validateCaptcha(captchaValue)) {
-      setDisabled(false)
-    }else{
-      setDisabled(true)
+      setDisabled(false);
+    } else {
+      setDisabled(true);
     }
   };
   return (
@@ -113,7 +109,12 @@ const Login = () => {
             </button>
           </div>
           <div className="mt-3">
-          <button disabled={disabled} className="btn text-white btn-primary w-full">Signin</button>
+            <button
+              disabled={disabled}
+              className="btn text-white btn-primary w-full"
+            >
+              Signin
+            </button>
           </div>
         </form>
       </div>
@@ -123,11 +124,14 @@ const Login = () => {
           Don't have an account?{" "}
         </span>
 
-        <Link to={"/signup"}><span
-          class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline"
-        >
-          Register
-        </span></Link>
+        <Link to={"/signup"}>
+          <span class="mx-2 text-sm font-bold text-blue-500 dark:text-blue-400 hover:underline">
+            Register
+          </span>
+        </Link>
+      </div>
+      <div>
+        <SocialLogin></SocialLogin>
       </div>
     </div>
   );
