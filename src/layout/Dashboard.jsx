@@ -8,6 +8,7 @@ import { FaBook } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import { FaRegEnvelopeOpen } from "react-icons/fa";
+import { MdHistory } from "react-icons/md";
 import useAdmin from "../hooks/useAdmin";
 
 const Dashboard = () => {
@@ -39,7 +40,13 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li className="text-[20px]">
-                <NavLink to={"/dashboard/bookings"}>
+                <NavLink to={"/dashboard/payment-history"}>
+                  <MdHistory />
+                  Payment History
+                </NavLink>
+              </li>
+              <li className="text-[20px]">
+                <NavLink to={"/dashboard/payment"}>
                   <FaBook />
                   Manage Bookings
                 </NavLink>

@@ -17,7 +17,7 @@ const Navbar = () => {
     <li><NavLink to={"/menu"}>Menu</NavLink></li>
     <li><NavLink to={"/order"}>Order</NavLink></li>
     <li><NavLink to={"/dashboard"}>Dashboard</NavLink></li>
-    <li><button className="btn btn-sm ml-5 mt-1 btn-warning">Cards:{cart.length}</button></li>
+    <li><button className="btn btn-sm ml-5 mt-1 btn-warning"><NavLink to={"/dashboard/cart"}>Cards:{cart.length}</NavLink></button></li>
   </>
   return (
     <div className="navbar bg-slate-800 text-white border fixed z-10 max-w-screen-xl bg-opacity-75">
